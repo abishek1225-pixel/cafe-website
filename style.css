@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #222;
+}
+
+
+/* ================= NAVBAR ================= */
+
+header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 25px 45px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin-right: 70px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #0b7959;
+}
+
+.cart-btn {
+    margin-left: 30px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #087552;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cart-btn:hover {
+    background: #065b40;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 100px 8%;
+
+    background:
+        linear-gradient(120deg,
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.25)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.order-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+
+    background: white;
+    color: #111;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.order-btn:hover {
+    background: #087552;
+    color: white;
+}
+
+
+/* HERO IMAGE */
+
+.hero-image {
+    width: 420px;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 50%;
+    display: block;
+}
+
+
+/* ================= MENU ================= */
+
+.menu {
+    padding: 90px 8%;
+    text-align: center;
+}
+
+.menu h2,
+.about h2,
+.contact h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.section-text {
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.coffee-card {
+    width: 300px;
+
+    background: white;
+
+    padding-bottom: 25px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+    transition: 0.3s;
+}
+
+.coffee-card:hover {
+    transform: translateY(-8px);
+}
+
+.coffee-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.coffee-card h3 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+}
+
+.coffee-card p {
+    color: #666;
+    padding: 0 20px;
+    line-height: 1.5;
+}
+
+.coffee-card h4 {
+    color: #087552;
+    font-size: 22px;
+    margin: 15px;
+}
+
+.coffee-card button {
+    border: none;
+    padding: 12px 20px;
+
+    background: #087552;
+    color: white;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.coffee-card button:hover {
+    background: #065b40;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+    padding: 100px 15%;
+    text-align: center;
+
+    background: #f5f2ed;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.about p {
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #555;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.contact p {
+    margin: 15px;
+    color: #555;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 25px;
+    text-align: center;
+
+    background: #222;
+    color: white;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 20px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .cart-btn {
+        margin-left: 15px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-image {
+        width: 280px;
+    }
+
+    .menu h2,
+    .about h2,
+    .contact h2 {
+        font-size: 32px;
+    }
+    body {
+    background-color: lightyellow;
+}
+
+h1 {
+    color: brown;
+}
+}

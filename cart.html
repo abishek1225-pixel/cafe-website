@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart - Coffee House</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f5f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-title {
+            color: #4b2e2e;
+            font-weight: bold;
+        }
+
+        .cart-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .coffee-name {
+            color: #4b2e2e;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 18px;
+        }
+
+        .total-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5 mb-5">
+
+        <h2 class="text-center mb-4 cart-title">
+            Your Cart 🛒
+        </h2>
+
+        <div id="cart-items"></div>
+
+        <div class="total-box text-center">
+            <h4 id="total">Total: ₹0</h4>
+
+            <a href="/checkout/" id="checkout-btn"
+               class="btn btn-success mt-3">
+                Proceed to Checkout
+            </a>
+
+            <br>
+
+            <a href="/" class="btn btn-dark mt-3">
+                Continue Shopping
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let cartItems = document.getElementById("cart-items");
+        let totalElement = document.getElementById("total");
+        let checkoutButton = document.getElementById("checkout-btn");
+
+        let total = 0;
+
+        function displayCart() {
+
+            cartItems.innerHTML = "";
+            total = 0;
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <h4>Your cart is empty ☕</h4>
+                        <p>Add your favourite coffee to continue.</p>
+                    </div>
+                `;
+
+                checkoutButton.style.display = "none";
+                totalElement.innerText = "Total: ₹0";
+
+                return;
+            }
+
+            checkoutButton.style.display = "inline-block";
+
+            cart.forEach(function(item, index) {
+
+                let price = Number(item.price) || 0;
+                total += price;
+
+                cartItems.innerHTML += `
+                    <div class="cart-card">
+                        <h4 class="coffee-name">${item.name}</h4>
+
+                        <p class="price">Price: ₹${price}</p>
+
+                        <button
+                            onclick="removeItem(${index})"
+                            class="btn btn-danger w-100">
+                            Remove
+                        </button>
+                    </div>
+                `;
+            });
+
+            totalElement.innerText = "Total: ₹" + total;
+        }
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            displayCart();
+        }
+
+        displayCart();
+    </script>
+
+</body>
+</html>

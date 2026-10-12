@@ -1,0 +1,199 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+    function addToCart(productId, productName, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    alert("Name: " + productName + " | Price: " + price);
+    cart.push({
+        id: productId,
+        name: productName,
+        price: Number(price)
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    document.getElementById("cart-count").innerText = cart.length;
+
+    alert(productName + " added to cart!");
+}
+</script>
+
+<script>
+function orderNow() {
+
+    document.getElementById("menu").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+    <!-- NAVBAR -->
+    <header>
+
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            Coffee House
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="/cart/" class="btn btn-dark">
+            Cart <span id="cart-count">0</span>
+        </a>
+
+        {% if user.is_authenticated %}
+    <form method="post" action="/logout/" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+{% else %}
+    <a href="/login/" class="btn btn-dark">Login</a>
+    <a href="/register/" class="btn btn-primary">Register</a>
+{% endif %}
+
+    </nav>
+</header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Fresh Coffee<br>
+                Everyday
+            </h1>
+
+            <p>
+                Experience premium coffee crafted with passion.
+            </p>
+
+            <button class="order-btn" onclick="orderNow()">
+                Order Now
+            </button>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80"
+                alt="Coffee">
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU SECTION -->
+  <!-- MENU SECTION -->
+<section class="menu" id="menu">
+
+    <h2>Our Menu</h2>
+
+    <p class="section-text">
+        Choose your favourite coffee
+    </p>
+
+    <div class="menu-container">
+
+        {% for item in menu %}
+
+        <div class="coffee-card">
+
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+
+            <h3>{{ item.name }}</h3>
+
+            <p>{{ item.description }}</p>
+
+            <h4>₹{{ item.price }}</h4>
+
+            
+
+
+<button onclick="addToCart('{{ item.id }}', '{{ item.name|escapejs }}', '{{ item.price }}')">
+    Add to Cart
+</button>       {% endfor %}
+
+    </div>
+
+</section>
+
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+
+        <div class="about-content">
+
+            <h2>About Coffee House</h2>
+
+            <p>
+                Coffee House is a place where great coffee meets
+                great people. We use premium coffee beans and
+                prepare every cup with love and passion.
+            </p>
+
+            <p>
+                Our goal is to give you a fresh and memorable
+                coffee experience every day.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+
+        <h2>Contact Us</h2>
+
+        <p>📍 Karumathampatti, Tamil Nadu</p>
+
+        <p>📞 +91 63800 46989</p>
+
+        <p>✉️ coffeehouse@gmail.com</p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Coffee House. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+
+</body>
+
+</html>
